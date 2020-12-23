@@ -1,0 +1,48 @@
+
+{% extends 'StudentApp/Base.html' %}
+{% load static %}
+
+{% block title %}View student{% endblock %}
+
+{% block body %}
+{% block content %}{% endblock %}
+{% if student %}
+<div class="container" id='deleteStudent'>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Course</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Year</th>
+                <th scope="col">Roll number</th>
+                <th scope="col">Address</th>
+                <!-- It cobine multiple data in one column <th scope="col" colspan="2">Operation</th> -->
+
+            </tr>
+            {% for s in student %}
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{s.id}}</th>
+                <!-- <td colspan="2">Larry the Bird</td> -->
+                <td>{{s.sName}}</td>
+                <td>{{s.sCourse}}</td>
+                <td>{{s.sBranch}}</td>
+                <td>{{s.sYear}}</td>
+                <td>{{s.sRollno}}</td>
+                <td>{{s.sAddress}}</td>
+
+
+            </tr> 
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+{% else %}
+<p>No student record found</p>
+{% endif %}
+<script src="{% static '{{var}}' %}"></script>
+{% endblock %}

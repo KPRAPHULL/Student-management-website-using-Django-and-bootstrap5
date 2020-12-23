@@ -1,0 +1,55 @@
+{% extends 'StudentApp/Base.html' %}
+
+{% block title %}View student{% endblock %}
+
+{% block body %}
+{% if student %}
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Course</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Year</th>
+                <th scope="col">Roll number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Operation</th>
+
+            </tr>
+            {% for s in student %}
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{s.id}}</th>
+                <!-- <td colspan="2">Larry the Bird</td> -->
+                <td>{{s.sName}}</td>
+                <td>{{s.sCourse}}</td>
+                <td>{{s.sBranch}}</td>
+                <td>{{s.sYear}}</td>
+                <td>{{s.sRollno}}</td>
+                <td>{{s.sAddress}}</td>
+                <td>
+                    <form action="/student/delete-student/" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value={{s.id}}>
+                        <button class="btn btn-primary">Delete</button>
+                    </form>
+
+                </td>
+
+                <!-- <td><a class="btn btn-primary" href="/student/delete-student?id={{s.id}}" role="button">
+                        Delete
+                    </a></td> -->
+
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+{% else %}
+<p>No student record found</p>
+{% endif %}
+{% endblock %}

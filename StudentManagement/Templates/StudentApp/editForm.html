@@ -1,0 +1,76 @@
+{% extends 'StudentApp/Base.html' %}
+{% block title %} Edit Student {% endblock %}
+{% block body %}
+<div class="container-fluid ">
+    <form action="/student/edit/" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="id" value={{student.id}}>
+        <div class="mb-5">
+            <label for="name" class="form-label mt-3">Name</label>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" name="sName" value="{{student.sName}}" class="form-control" id="name" aria-describedby="NameHelp">
+                </div>
+            </div>
+            <div id="Help" class="form-text">Enter your name(ex :Praphull Kumar)</div>
+        </div>
+
+        <div class="mb-5">
+            <label for="course" class="form-label">Course</label>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" name="sCourse" value="{{student.sCourse}}" class="form-control" id="course" aria-describedby="CourseHelp">
+                </div>
+            </div>
+            <div id="Help" class="form-text">Enter course (ex : B.Tech,Diploma)</div>
+        </div>
+
+        <div class="mb-5">
+            <label for="branch" class="form-label">Branch</label>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" name="sBranch" value="{{student.sBranch}}" class="form-control" id="branch" aria-describedby="BranchHelp">
+                </div>
+            </div>
+            <div id="Help" class="form-text">Enter your branch(ex :CSE,ECE,...)</div>
+        </div>
+
+        <div class="mb-5">
+            <label for="year" class="form-label">Year</label>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" name="sYear" value="{{student.sYear}}" class="form-control" id="year" aria-describedby="YearHelp">
+                </div>
+            </div>
+            <div id="Help" class="form-text">Enter your present year(ex :1,2,3,4)</div>
+        </div>
+
+        <div class="mb-5">
+            <label for="rollno" class="form-label">Roll Number</label>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" name="sRollno" value="{{student.sRollno}}" class="form-control" id="rollno" aria-describedby="RollNumberHelp">
+                </div>
+            </div>
+            <div id="Help" class="form-text">Enter your roll number(ex :18AR1A05B6)</div>
+        </div>
+
+        <div class="mb-5">
+            <label for="address" class="form-label">Address</label>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" name="sAddress" value="{{student.sAddress}}" class="form-control" id="address" aria-describedby="AddressHelp">
+                </div>
+            </div>
+            <div id="Help" class="form-text">Enter your present address(ex :Narasaraopet,Jonnalagada,...)</div>
+        </div>
+
+        <!-- <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
