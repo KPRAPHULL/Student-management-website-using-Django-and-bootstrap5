@@ -6,8 +6,26 @@
 
 {% block body %}
 {% block content %}{% endblock %}
+{% if add %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>New student of name  {{display.sName}}  &  roll number={{display.sRollno}} is  ADDED </strong> see below
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% elif update %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>The student of name  {{display.sName}}  &  roll number={{display.sRollno}} is  UPDATED </strong> see below
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% elif delete %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>The student of name  {{display.sName}}  &  roll number={{display.sRollno}} is  DELETED</strong> see below
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+{% endif %}
+   
 {% if student %}
-<div class="container" id='deleteStudent'>
+<div class="container" id='delStudent'>
     <table class="table">
         <thead>
             <tr>
@@ -42,7 +60,9 @@
 </div>
 
 {% else %}
-<p>No student record found</p>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>No student found </strong> Please add new Record
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 {% endif %}
-<script src="{% static '{{var}}' %}"></script>
 {% endblock %}

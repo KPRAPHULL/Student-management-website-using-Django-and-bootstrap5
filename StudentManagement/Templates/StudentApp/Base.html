@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -39,7 +40,8 @@
                         <a class="nav-link active" aria-current="page" href="/student/edit-preview/">Update student</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/student/delete-preview/">Delete student</a>
+                        <a class="nav-link active" aria-current="page" href="/student/delete-preview/">Delete
+                            student</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -58,12 +60,14 @@
 
                 </ul>
                 <form class="d-flex" action="/student/search-student/">
-                    <input class="form-control me-2" type="search" name="sRollno" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" name="sRollno" placeholder="Search"
+                        aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
         </div>
     </nav>
+    
     <!-- Remaining code  -->
     {% block body %} //---Your Code ----- {% endblock %}
 

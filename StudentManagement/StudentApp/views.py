@@ -13,16 +13,19 @@ def addStudent(request):
 
 def add(request):
     if request.method == 'POST':
-        sform = StudentForm(request.POST)
+        form = StudentForm(request.POST)
         student=StudentModel()
-        student.sName=sform.data['sName']
-        student.sRollno=sform.data['sRollno']
-        student.sYear=sform.data['sYear']
-        student.sCourse=sform.data['sCourse']
-        student.sBranch=sform.data['sBranch']
-        student.sAddress=sform.data['sAddress']
+        student.sName=form.data['sName']
+        student.sRollno=form.data['sRollno']
+        student.sYear=form.data['sYear']
+        student.sCourse=form.data['sCourse']
+        student.sBranch=form.data['sBranch']
+        student.sAddress=form.data['sAddress']
         student.save()
-    return redirect('/student/view-student/')
+    # return redirect('/student/view-student')
+    display={'sName':form.data['sName'],'sRollno':form.data['sRollno']}
+    student=StudentModel.objects.all()
+    return render(request,'StudentApp/Display.html',{'student':student,'add':1,'display':display})
 
 def viewStudent(request):
     student = StudentModel.objects.all()
@@ -37,17 +40,20 @@ def editStudent(request):
         return render(request,'StudentApp/editForm.html',{'student':student})
 def edit(request):
     if request.method == 'POST':
-        sform = StudentForm(request.POST)
+        form = StudentForm(request.POST)
         student=StudentModel()
         student.id=request.POST['id']
-        student.sName=sform.data['sName']
-        student.sRollno=sform.data['sRollno']
-        student.sYear=sform.data['sYear']
-        student.sCourse=sform.data['sCourse']
-        student.sBranch=sform.data['sBranch']
-        student.sAddress=sform.data['sAddress']
+        student.sName=form.data['sName']
+        student.sRollno=form.data['sRollno']
+        student.sYear=form.data['sYear']
+        student.sCourse=form.data['sCourse']
+        student.sBranch=form.data['sBranch']
+        student.sAddress=form.data['sAddress']
         student.save()
-    return redirect('/student/view-student/')
+    # return redirect('/student/view-student/')
+    display={'sName':form.data['sName'],'sRollno':form.data['sRollno']}
+    student=StudentModel.objects.all()
+    return render(request,'StudentApp/Display.html',{'student':student,'update':1,'display':display})
 
 def deleteView(request):
     student = StudentModel.objects.all()
@@ -55,11 +61,12 @@ def deleteView(request):
 
 def deleteStudent(request):
     student1=StudentModel.objects.get(id=request.POST['id'])
-    toast=student1.sName
-    toast1=student1.sRollno
+    display={'sName':student1.sName,'sRollno':student1.sRollno}
     student1.delete()
-    student = StudentModel.objects.all()
-    return render(request,'StudentApp/Display.html',{'toast':toast,'toast1':toast1,'student':student,'var':'delete.js'})
+    # student = StudentModel.objects.all()
+    # return render(request,'StudentApp/Display.html',{'toast':toast,'student':student,'update':1})
+    student=StudentModel.objects.all()
+    return render(request,'StudentApp/Display.html',{'student':student,'delete':1,'display':display})
 
 def Search(request):
     student=StudentModel.objects.filter(sRollno=request.GET['sRollno'])
